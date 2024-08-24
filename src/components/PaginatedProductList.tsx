@@ -10,7 +10,7 @@ interface Product {
   name: string;
   description: string;
   image: string;
-  price: string;
+  price: string | number; // Accept both string and number
 }
 
 interface PaginatedProductListProps {
@@ -25,6 +25,14 @@ export function PaginatedProductList({ products }: PaginatedProductListProps) {
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const formatCurrency = (amount: string | number) => {
+    const numericAmount = typeof amount === 'string' ? parseFloat(amount) : amount;
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(numericAmount);
+  };
 
   return (
     <>
@@ -45,7 +53,7 @@ export function PaginatedProductList({ products }: PaginatedProductListProps) {
               </div>
               <div className="p-3 flex-grow">
                 <p className="text-xs mb-1 line-clamp-2">{product.description}</p>
-                <p className="font-bold text-sm">Price: ${product.price}</p>
+                <p className="font-bold text-sm">Price: {formatCurrency(product.price)}</p>
               </div>
             </CardContent>
           </Card>

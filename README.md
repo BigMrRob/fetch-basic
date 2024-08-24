@@ -9,20 +9,13 @@ To run this program, follow these steps:
 1. Clone the repository
 2. Install dependencies:
    ```
-   npm install
-   ```
-   or
-   ```
-   yarn install
+   bun install
    ```
 3. Run the development server:
    ```
-   npm run dev
+   bun run dev
    ```
-   or
-   ```
-   yarn dev
-   ```
+  
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application
 
 ## Libraries and Packages Used
